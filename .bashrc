@@ -7,6 +7,7 @@
 
 alias ls='ls --color=auto'
 alias l='ls -la'
+alias ducks='find * -type f -printf "%k KB \t%p\n" | sort -nr | head -10'
 PS1='[\u@\h \W]\$ '
 
 HISTFILE=~/.histfile
