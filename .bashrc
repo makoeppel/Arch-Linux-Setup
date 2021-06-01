@@ -28,7 +28,7 @@ export ALTERAD_LICENSE_FILE=1800@scpc98.unige.ch
 export LM_LICENSE_FILE=1800@scpc98.unige.ch
 
 
-export QUARTUS_ROOTDIR="/home/makoeppe/altera/intelFPGA/18.0/       quartus"
+export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
 [ -d "$QUARTUS_ROOTDIR" ] || return
 
 if [ "$(uname -m)" = "x86_64" ] ; then
@@ -44,4 +44,7 @@ export PATH="$PATH:$QUARTUS_ROOTDIR/sopc_builder/bin"
 export SOPC_KIT_NIOS2="$QUARTUS_ROOTDIR/../nios2eds"
 export PATH="$PATH:$SOPC_KIT_NIOS2/bin"
 export PATH="$PATH:$SOPC_KIT_NIOS2/sdk2/bin"
-export PATH="$PATH:$SOPC_KIT_NIOS2/bin/gnu/H-x86_64-pc-linux-gnu/   bin"
+export PATH="$PATH:$SOPC_KIT_NIOS2/bin/gnu/H-x86_64-pc-linux-gnu/bin"
+
+export LC_CTYPE="de_DE.UTF-8"
+export LC_ALL="de_DE.UTF-8"
