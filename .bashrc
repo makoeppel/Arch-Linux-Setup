@@ -23,7 +23,7 @@ compinit
 source ~/.arch_setup/.git.plugin.zsh
 source ~/.arch_setup/cool-simple-zsh-theme/cool-simple-zsh-theme.zsh-theme
 
-export QUARTUS_ROOTDIR="/home/makoeppe/altera/intelFPGA/18.0/quartus"
+export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
 
 [ -d "$QUARTUS_ROOTDIR" ] || return
 
