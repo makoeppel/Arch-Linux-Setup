@@ -7,6 +7,7 @@
 
 alias ls='ls --color=auto'
 alias l='ls -la'
+alias ducks='find * -type f -printf "%k KB \t%p\n" | sort -nr | head -10'
 PS1='[\u@\h \W]\$ '
 
 HISTFILE=~/.histfile
@@ -22,13 +23,8 @@ compinit
 source ~/.arch_setup/.git.plugin.zsh
 source ~/.arch_setup/cool-simple-zsh-theme/cool-simple-zsh-theme.zsh-theme
 
-#export ALTERAD_LICENSE_FILE=1800@galileo.zdv.uni-mainz.de
-#export LM_LICENSE_FILE=1800@galileo.zdv.uni-mainz.de
-export ALTERAD_LICENSE_FILE=1800@scpc98.unige.ch
-export LM_LICENSE_FILE=1800@scpc98.unige.ch
+export QUARTUS_ROOTDIR="/home/makoeppe/altera/intelFPGA/18.0/quartus"
 
-
-export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
 [ -d "$QUARTUS_ROOTDIR" ] || return
 
 if [ "$(uname -m)" = "x86_64" ] ; then

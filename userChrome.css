@@ -1,0 +1,12 @@
+.tabbrowser-tab {
+min-width: initial !important;
+}
+.tab-content {
+overflow: hidden !important;
+}
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+#PanelUI-menu-button {display: none;}
+#TabsToolbar {visibility: collapse;}
+#navigator-toolbox {visibility: collapse;}
+browser {margin-right: -14px; margin-bottom: -14px;}
