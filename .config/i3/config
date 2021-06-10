@@ -123,7 +123,7 @@ bar {
 }
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 1
 assign [class=URxvt] 1
 assign [class=Firefox|Transmission-gtk] 2
 assign [class=Thunar|File-roller] 3
