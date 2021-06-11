@@ -26,6 +26,9 @@ trizen fonts-mplus
 sudo pacman -S zsh zsh-completions
 ```
 
+# Vim
+Vim setup taken from [oh-my-vim](https://github.com/liangxianzhe/oh-my-vim)
+
 ## ranger
 ```
 sudo pacman -S ranger w3m
