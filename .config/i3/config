@@ -120,6 +120,8 @@ bar {
         urgent_workspacei       #2f343f #ebcb8b #2f343f
     }
         status_command i3status
+        
+        tray_output none
 }
 
 # window rules, you can find the window class using xprop
