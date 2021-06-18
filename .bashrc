@@ -1,15 +1,17 @@
-#
-# ~/.bashrc
-#
+#!/bin/bash
+
 
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias l='ls -la'
+
 PS1='[\u@\h \W]\$ '
 
 export QSYS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
-#[ -d "$QUARTUS_ROOTDIR" ] || return
+export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus" 
+[ -d "$QUARTUS_ROOTDIR" ] || return
 
 if [ "$(uname -m)" = "x86_64" ] ; then
     QUARTUS_64BIT='1'

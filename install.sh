@@ -54,11 +54,8 @@ for target in "${targets[@]}" ; do
     fi
 
     if command -v realpath &> /dev/null ; then
-        echo BBBB
-        #target=$(realpath -s --relative-to="$link_dir" "$target")
         ln -snv --relative -T "$target" "$link"
     else
-        echo AAAA
         ln -snv -T "$target" "$link"
     fi
 done
