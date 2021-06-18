@@ -1,0 +1,3 @@
+- clone https://github.com/Aris-t2/CustomCSSforFx into .mozilla
+- copy prefs.js into .mozilla/firefox/myovwijs.default-release
+- make folder chrome in .mozilla/firefox/myovwijs.default-release
