@@ -2,15 +2,15 @@
 
 ```
 cp .config/i3/config ~/.config/i3/
-cp .config/i3status/config ~/.config/i3status/
-cp -r .config/dunstrc ~/.config/
+cp .config/i3status ~/.config/i3status/
+cp -r .config/dunst ~/.config/
 cp .config/compton.conf ~/.config/compton.conf
 cp -r .config/ranger ~/.config/
 cp -r .fonts ~/
 cd fonts
 ./install.sh
 ```
-Compy all into ./config
+Copy all into ~/.
 
 ## i3
 modified from [i3-starterpack](https://github.com/addy-dclxvi/i3-starterpack.git)
