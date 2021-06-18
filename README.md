@@ -33,3 +33,4 @@ Vim setup taken from [oh-my-vim](https://github.com/liangxianzhe/oh-my-vim)
 ```
 sudo pacman -S ranger w3m
 ```
+
