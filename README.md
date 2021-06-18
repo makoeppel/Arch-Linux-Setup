@@ -34,3 +34,7 @@ Vim setup taken from [oh-my-vim](https://github.com/liangxianzhe/oh-my-vim)
 sudo pacman -S ranger w3m
 ```
 
+## TODO
+- setup .git stuff
+- auto setup i3 / i3status
+- handle gitmoduls in opt
