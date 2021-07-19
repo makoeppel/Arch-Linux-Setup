@@ -46,3 +46,5 @@ done
 
 unset -v MY_GEANT4_SH
 
+# clion
+export PATH="$PATH:/home/makoeppel/compiled_software/clion-2021.1.3/bin"
