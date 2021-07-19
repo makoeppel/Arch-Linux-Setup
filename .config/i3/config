@@ -1,5 +1,5 @@
 # set modifier
-set $super Mod1
+set $super Mod4
 set $alt Mod1
 
 # set font
@@ -109,16 +109,17 @@ bindsym $super+r mode "resize"
 # panel
 bar {
         colors {
-        background #2f343f
-        statusline #2f343f
-        separator #4b5262
+            background #2f343f
+            statusline #2f343f
+            separator #4b5262
 
-        # colour of border, background, and text
-        focused_workspace       #2f343f #bf616a #d8dee8
-        active_workspace        #2f343f #2f343f #d8dee8
-        inactive_workspace      #2f343f #2f343f #d8dee8
-        urgent_workspacei       #2f343f #ebcb8b #2f343f
-    }
+            # colour of border, background, and text
+            focused_workspace       #2f343f #bf616a #d8dee8
+            active_workspace        #2f343f #2f343f #d8dee8
+            inactive_workspace      #2f343f #2f343f #d8dee8
+            urgent_workspacei       #2f343f #ebcb8b #2f343f
+        }
+        
         status_command i3status
         
         tray_output none
@@ -149,7 +150,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-terminal'
 exec --no-startup-id "sh -c 'sleep 10; exec qbittorent'"
 exec --no-startup-id i3-msg 'workspace 2; exec skypeforlinux'
-exec --no-startup-id i3-msg 'workspace 2; exec whatsapp-nativefier-dark'
+exec --no-startup-id i3-msg 'workspace 2; exec whatsapp-for-linux'
 exec --no-startup-id i3-msg 'workspace 2; exec mattermost-desktop'
 exec --no-startup-id i3-msg 'workspace 2; exec keepass'
 exec --no-startup-id i3-msg 'workspace 2; exec thunderbird'
