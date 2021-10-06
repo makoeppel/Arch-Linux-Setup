@@ -8,6 +8,9 @@ cp .config/compton.conf ~/.config/compton.conf
 cp -r .config/ranger ~/.config/
 cp -r .fonts ~/
 cd fonts
+git submodule init
+cp -r .vim_runtime ~/.vim_runtime
+cd ~ && sh ~/.vim_runtime/install_awesome_vimrc.sh && cd -
 mkdir ../screenshots/
 ./install.sh
 ```
@@ -28,7 +31,7 @@ sudo pacman -S zsh zsh-completions
 ```
 
 # Vim
-Vim setup taken from [oh-my-vim](https://github.com/liangxianzhe/oh-my-vim)
+Vim setup taken from [vimrc](https://github.com/amix/vimrc)
 
 ## ranger
 ```
