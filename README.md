@@ -8,6 +8,7 @@ cp .config/compton.conf ~/.config/compton.conf
 cp -r .config/ranger ~/.config/
 cp -r .fonts ~/
 cd fonts
+mkdir ../screenshots/
 ./install.sh
 ```
 Copy all into ~/.
