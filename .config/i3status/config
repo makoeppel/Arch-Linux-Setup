@@ -9,6 +9,7 @@ general {
 }
 
 order += "load"
+#order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "disk /"
 order += "disk /home"
@@ -20,6 +21,10 @@ order += "tztime local"
 
 load {
         format = "<span background='#e1974c'>  %5min Load </span>"
+}
+
+cpu_usage {
+        format = "%usage "
 }
 
 cpu_temperature 0 {
@@ -36,12 +41,12 @@ disk "/home" {
 }
 
 ethernet enp1s0 {
-        format_up = "<span background='#ab6857'>  %ip </span>"
+        format_up = "<span background='#ab6857'>  %ip with %bitrate </span>"
         format_down = "<span background='#ab6857'>  Disconnected </span>"
 }
 
 wireless wlp3s0 {
-        format_up = "<span background='#9067a7'>  %essid %ip </span>"
+        format_up = "<span background='#9067a7'>  %ip with %bitrate at %essid </span>"
         format_down = "<span background='#9067a7'>  Disconnected </span>"
 }
 
