@@ -6,6 +6,7 @@
 
 alias ls='ls --color=auto'
 alias l='ls -la'
+alias findbig='find . -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r'
 
 PS1='[\u@\h \W]\$ '
 
