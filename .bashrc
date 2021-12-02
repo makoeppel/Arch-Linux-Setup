@@ -7,6 +7,7 @@
 alias ls='ls --color=auto'
 alias l='ls -la'
 alias findbig='find . -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r'
+alias ducks='find * -type f -printf "%k KB \t%p\n" | sort -nr | head -10'
 
 PS1='[\u@\h \W]\$ '
 
