@@ -120,7 +120,7 @@ bar {
             urgent_workspacei       #2f343f #ebcb8b #2f343f
         }
         
-        status_command i3status
+        status_command py3status -c ~/.config/i3status/config
         
         tray_output none
 }

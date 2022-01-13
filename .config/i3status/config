@@ -8,8 +8,11 @@ general {
         color_bad = '#ba5e57'
 }
 
+#order += "conky memory"
 order += "load"
-#order += "cpu_usage"
+#order += "conky cpu"
+order += "cpu_usage"
+#order += "read_file test"
 order += "cpu_temperature 0"
 order += "disk /"
 order += "disk /home"
@@ -23,8 +26,35 @@ load {
         format = "<span background='#e1974c'>  %5min Load </span>"
 }
 
+conky memory {
+    format = 'Memory [\?color=lightskyblue {mem}/{memmax}] '
+    format += '[\?color=memperc {memperc}% \[{membar}\]]'
+    thresholds = [
+        (0, 'darkgray'), (0.001, 'good'), (50, 'degraded'),
+        (75, 'orange'), (85, 'bad')
+    ]
+}
+
+conky cpu {
+    format = 'CPU '
+    format += '[\?color=cpu.cpu0 {cpu cpu0}% {cpubar cpu0}] '
+    format += '[\?color=cpu.cpu1 {cpu cpu1}% {cpubar cpu1}] '
+    format += '[\?color=cpu.cpu2 {cpu cpu2}% {cpubar cpu2}] '
+    format += '[\?color=cpu.cpu3 {cpu cpu3}% {cpubar cpu3}]'
+
+    thresholds = [
+        (0, 'darkgray'), (0.001, 'good'), (50, 'degraded'),
+        (75, 'orange'), (85, 'bad')
+    ]
+}
+
 cpu_usage {
-        format = "%usage "
+        format = "<span background='#d35e60'>  %usage CPU </span>"
+}
+
+read_file test {
+        format = "<span background='#d35e60'> BRI %content </span>"
+        path = "/home/makoeppel/.config/i3status/test"
 }
 
 cpu_temperature 0 {
@@ -56,10 +86,15 @@ volume master {
         device = "default"
         mixer = "Master"
         mixer_idx = 0
+        on_click 1 = "exec i3-sensible-terminal -e alsamixer"
+        on_click 2 = "exec amixer set Master toggle"
+        on_click 3 = "exec killall alsamixer"
+        on_click 4 = "exec amixer set Master 1+"
+        on_click 5 = "exec amixer set Master 1-"
 }
 
 battery 1 {
-	last_full_capacity = true
+	    last_full_capacity = true
         format = "<span background='#84ba5b'>  %status %percentage </span>"
         format_down = "No Battery"
         status_chr = "Charging"

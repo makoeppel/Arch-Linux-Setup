@@ -23,6 +23,8 @@ sudo pacman -S i3 i3-wm dunst i3lock i3status
 sudo pacman -S compton hsetroot rxvt-unicode xsel rofi xsettingsd lxappearance scrot viewnior
 trizen fonts-noto
 trizen fonts-mplus
+sudo pacman -S py3status
+sudp pacman -S conky
 ```
 
 ## terminal
