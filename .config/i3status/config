@@ -8,6 +8,7 @@ general {
         color_bad = '#ba5e57'
 }
 
+order += "keyboard_layout"
 #order += "conky memory"
 order += "load"
 #order += "conky cpu"
@@ -111,3 +112,6 @@ tztime local {
         timezone = "Europe/Berlin"
 }
 
+keyboard_layout {
+    format = "<span background='#84ba5b'> {layout} </span>"
+}
