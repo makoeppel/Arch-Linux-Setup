@@ -1,0 +1,8 @@
+#  https://unix.stackexchange.com/questions/505008/signal-desktop-how-to-export-messages
+
+sigBase="${HOME}/.config/Signal/";
+key=$( /usr/bin/jq -r '."key"' ${sigBase}config.json );
+db="${HOME}/.config/Signal/sql/db.sqlite";
+clearTextMsgs="${sigBase}clearTextMsgs.csv";
+
+/usr/bin/sqlcipher -list -noheader "$db" "PRAGMA key = \"x'"$key"'\";select json from messages;" > "$clearTextMsgs";
