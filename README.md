@@ -24,7 +24,8 @@ sudo pacman -S compton hsetroot rxvt-unicode xsel rofi xsettingsd lxappearance s
 trizen fonts-noto
 trizen fonts-mplus
 sudo pacman -S py3status
-sudp pacman -S conky
+sudo pacman -S conky
+sudo pacman -S bat
 ```
 
 ## terminal
