@@ -9,6 +9,12 @@ alias l='ls -la'
 alias findbig='find . -xdev -type f -size +100M -print | xargs ls -lh | sort -k5,5 -h -r'
 alias ducks='find * -type f -printf "%k KB \t%p\n" | sort -nr | head -10'
 alias less='bat'
+alias online='cd ~/mu3e/online/build'
+alias ana='cd ~/mu3e/analyzer/build'
+alias set_env='source ~/mu3e/online/build/set_env.sh'
+alias midas='cd ~/mu3e/midas/build'
+alias clean='source ~/mu3e/online/online/clean.sh'
+alias set_odb='source ~/mu3e/online/build/setup_odb.sh'
 
 PS1='[\u@\h \W]\$ '
 
@@ -33,6 +39,11 @@ export PATH="$PATH:$SOPC_KIT_NIOS2/bin/gnu/H-x86_64-pc-linux-gnu/bin"
 
 export LC_CTYPE="de_DE.UTF-8"
 export LC_ALL="de_DE.UTF-8"
+
+# Midas
+export MIDASSYS="~/mu3e/midas"
+export MIDAS_EXPTAB="~/mu3e/online/online/exptab"
+export MIDAS_EXPT_NAME="Mu3e"
 
 # geant4
 for MY_GEANT4_SH in \
