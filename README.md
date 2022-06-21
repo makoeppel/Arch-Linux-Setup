@@ -41,6 +41,9 @@ Vim setup taken from [vimrc](https://github.com/amix/vimrc)
 sudo pacman -S ranger w3m
 ```
 
+## restic
+Restic setup is taken from [restic-cron](https://github.com/marconett/restic-cron)
+
 ## TODO
 - setup .git stuff
 - auto setup i3 / i3status
