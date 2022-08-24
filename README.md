@@ -44,6 +44,9 @@ sudo pacman -S ranger w3m
 ## restic
 Restic setup is taken from [restic-cron](https://github.com/marconett/restic-cron)
 
+## Pacman Updates
+sudo pacman -S archlinux-keyring && sudo pacman -Syu
+
 ## TODO
 - setup .git stuff
 - auto setup i3 / i3status
