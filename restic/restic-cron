@@ -3,13 +3,11 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin
 
 CONFIG_FILE="restic-cron.conf"
 EXCLUDE_TMP="$(mktemp)"
-SSH_KEY_TMP="$(mktemp)"
 MODE=$1
 
 handle_errors () {
   if [ "$?" != "0" ]; then
     rm $EXCLUDE_TMP
-    rm $SSH_KEY_TMP
     (>&2 echo "error: '$1'")
     exit 1
   fi
@@ -42,7 +40,7 @@ if [ "$MODE" == "ssh" ]; then
 
   export RESTIC_REPOSITORY="sftp:$SSH_REMOTE_USER@$SSH_REMOTE_SERVER:$SSH_REMOTE_PATH"
 
-  RESTIC_SFTP="-o sftp.command=ssh -i $SSH_KEY_TMP $SSH_REMOTE_USER@$SSH_REMOTE_SERVER -p $SSH_PORT -o StrictHostKeyChecking=no -s sftp"
+  RESTIC_SFTP="-o sftp.command=ssh $SSH_REMOTE_USER@$SSH_REMOTE_SERVER -p $SSH_PORT -o StrictHostKeyChecking=no -s sftp"
 fi
 
 if [ "$MODE" == "backblaze" ]; then
@@ -75,7 +73,9 @@ echo "---------- backup files"
 restic backup "$RESTIC_SFTP" \
   --tag $(hostname) \
   --one-file-system \
-  --exclude-file $EXCLUDE_TMP \
+  --iexclude $EXCLUDE_TMP \
+  --exclude-larger-than 1G \
+  --dry-run \
   ${include[*]}
 handle_errors "running backup"
 
@@ -116,4 +116,3 @@ handle_errors "running mysql backup"
 # restic prune "$RESTIC_SFTP"
 
 rm $EXCLUDE_TMP
-rm $SSH_KEY_TMP
