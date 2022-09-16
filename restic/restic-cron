@@ -73,9 +73,36 @@ echo "---------- backup files"
 restic backup "$RESTIC_SFTP" \
   --tag $(hostname) \
   --one-file-system \
-  --iexclude $EXCLUDE_TMP \
+  --exclude $EXCLUDE_TMP \
+  --exclude=".cache" \
+  --exclude=".altera.quartus" \
+  --exclude=".android" \
+  --exclude=".jupyter" \
+  --exclude=".kaggle" \
+  --exclude=".keras" \
+  --exclude=".local" \
+  --exclude=".config" \
+  --exclude=".zoom" \
+  --exclude=".npm" \
+  --exclude=".mozilla" \
+  --exclude=".vscode-insiders" \
+  --exclude=".vscode-oss" \
+  --exclude="Downloads" \
+  --exclude="altera" \
+  --exclude="Dokumente/nutritionhelper" \
+  --exclude="nltk_data" \
+  --exclude="root_output_files" \
+  --exclude="compiled_software" \
+  --exclude="mu3e/online" \
+  --exclude="mu3e/analyzer" \
+  --exclude="mu3e/mu3e" \
+  --exclude="mu3e/midas" \
+  --exclude="mu3e/mupix8_daq" \
+  --exclude="mu3e/mu3especbook" \
+  --exclude="mu3e/*.root" \
+  --exclude="ranking/Adaptive_Learning" \
+  --exclude="ranking/nox-ai" \
   --exclude-larger-than 1G \
-  --dry-run \
   ${include[*]}
 handle_errors "running backup"
 
