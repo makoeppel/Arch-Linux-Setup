@@ -47,6 +47,13 @@ Restic setup is taken from [restic-cron](https://github.com/marconett/restic-cro
 ## Pacman Updates
 sudo pacman -S archlinux-keyring && sudo pacman -Syu
 
+## Kernel lost
+- use USB with Arch live
+- mount root partition
+- arch-chroot on the partition
+- pacman -S linux-lts
+- reboot
+
 ## TODO
 - setup .git stuff
 - auto setup i3 / i3status

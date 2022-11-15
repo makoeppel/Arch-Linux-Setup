@@ -36,6 +36,7 @@ export SOPC_KIT_NIOS2="$QUARTUS_ROOTDIR/../nios2eds"
 export PATH="$PATH:$SOPC_KIT_NIOS2/bin"
 export PATH="$PATH:$SOPC_KIT_NIOS2/sdk2/bin"
 export PATH="$PATH:$SOPC_KIT_NIOS2/bin/gnu/H-x86_64-pc-linux-gnu/bin"
+export PATH="$PATH:$QUARTUS_ROOTDIR/../hls/bin"
 
 export LC_CTYPE="de_DE.UTF-8"
 export LC_ALL="de_DE.UTF-8"
