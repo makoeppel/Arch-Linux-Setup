@@ -13,13 +13,16 @@ alias online='cd ~/mu3e/online/build'
 alias ana='cd ~/mu3e/analyzer/build'
 alias set_env='source ~/mu3e/online/build/set_env.sh'
 alias midas='cd ~/mu3e/midas/build'
+alias mu3e='cd ~/mu3e/mu3e'
 alias clean='source ~/mu3e/online/online/clean.sh'
 alias set_odb='source ~/mu3e/online/build/setup_odb.sh'
+alias thisroot="source ~/compile_software/root/cmake-build/bin/thisroot.sh"
+alias modelsim="/opt/intelFPGA/20.1/modelsim_ase/bin/vsim"
 
 PS1='[\u@\h \W]\$ '
 
-export QSYS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
-export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus" 
+export QSYS_ROOTDIR="~/altera/intelFPGA/18.0/quartus"
+export QUARTUS_ROOTDIR="~/altera/intelFPGA/18.0/quartus"
 [ -d "$QUARTUS_ROOTDIR" ] || return
 
 if [ "$(uname -m)" = "x86_64" ] ; then
@@ -45,6 +48,7 @@ export LC_ALL="de_DE.UTF-8"
 export MIDASSYS="~/mu3e/midas"
 export MIDAS_EXPTAB="~/mu3e/online/online/exptab"
 export MIDAS_EXPT_NAME="Mu3e"
+unset MIDAS_DIR
 
 # geant4
 for MY_GEANT4_SH in \
