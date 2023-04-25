@@ -6,6 +6,7 @@ cp .config/i3status ~/.config/i3status/
 cp -r .config/dunst ~/.config/
 cp .config/compton.conf ~/.config/compton.conf
 cp -r .config/ranger ~/.config/
+cp -r .config/conky ~/.config/
 cp -r .fonts ~/
 cd fonts
 git submodule init
@@ -53,6 +54,15 @@ sudo pacman -S archlinux-keyring && sudo pacman -Syu
 - arch-chroot on the partition
 - pacman -S linux-lts
 - reboot
+
+## conky
+- setup for i3 https://faq.i3wm.org/question/3829/conky-on-desktop.1.html
+- edit the config file and add: own_window yes own_window_class Conky own_window_type override
+- example: conky -c "~/.config/conky/Gotham/Gotham" &
+- trizen conky-cairo (for using lua cairo)
+- change lua_load = 'settings.lua' in start_conky_General_VERTICAL_circle to use local one
+- cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/settings.lua ~/.config/conky/
+- cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/start_conky_General_VERTICAL_circle ~/.config/conky/
 
 ## TODO
 - setup .git stuff

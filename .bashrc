@@ -21,8 +21,8 @@ alias modelsim="/opt/intelFPGA/20.1/modelsim_ase/bin/vsim"
 
 PS1='[\u@\h \W]\$ '
 
-export QSYS_ROOTDIR="~/altera/intelFPGA/18.0/quartus"
-export QUARTUS_ROOTDIR="~/altera/intelFPGA/18.0/quartus"
+export QSYS_ROOTDIR="/home/makoeppel/data/altera/intelFPGA/18.0/quartus"
+export QUARTUS_ROOTDIR="/home/makoeppel/data/altera/intelFPGA/18.0/quartus"
 [ -d "$QUARTUS_ROOTDIR" ] || return
 
 if [ "$(uname -m)" = "x86_64" ] ; then
