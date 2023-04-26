@@ -30,8 +30,11 @@ sudo pacman -S bat
 ```
 
 ## terminal
+gnome-terminal has the run a custom command instead of my shell field in the profile editor
 ```
 sudo pacman -S zsh zsh-completions
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cat .zshrc >> ~/.zshrc
 ```
 
 # Vim

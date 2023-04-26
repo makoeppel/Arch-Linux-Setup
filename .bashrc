@@ -19,8 +19,6 @@ alias set_odb='source ~/mu3e/online/build/setup_odb.sh'
 alias thisroot="source ~/compile_software/root/cmake-build/bin/thisroot.sh"
 alias modelsim="/opt/intelFPGA/20.1/modelsim_ase/bin/vsim"
 
-PS1='[\u@\h \W]\$ '
-
 export QSYS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
 export QUARTUS_ROOTDIR="/home/makoeppel/altera/intelFPGA/18.0/quartus"
 [ -d "$QUARTUS_ROOTDIR" ] || return
