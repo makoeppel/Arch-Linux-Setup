@@ -67,6 +67,10 @@ sudo pacman -S archlinux-keyring && sudo pacman -Syu
 - cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/settings.lua ~/.config/conky/
 - cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/start_conky_General_VERTICAL_circle ~/.config/conky/
 
+## Pinebook Pro
+- Touchpad tab-to-click into i3 config
+-  exec xinput set-prop "Pine64 Pinebook Pro Touchpad" "Synaptics Tap Action" 1, 1, 1, 1, 1, 1, 1
+
 ## TODO
 - setup .git stuff
 - auto setup i3 / i3status
