@@ -9,7 +9,7 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,ssh,filebrowser";
+	modi:                       "drun,ssh,filebrowser,calc";
     show-icons:                 true;
     display-drun:               " Applications";
 	drun-display-format:        "{name}";
