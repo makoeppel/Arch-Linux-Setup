@@ -13,6 +13,9 @@ git submodule init
 cp -r .vim_runtime ~/.vim_runtime
 cd ~ && sh ~/.vim_runtime/install_awesome_vimrc.sh && cd -
 mkdir ../screenshots/
+cp -r rofi ~/.config/
+mkdir -p ~/.local/share/fonts/
+cp rofi/fonts/* ~/.local/share/fonts/
 ./install.sh
 ```
 Copy all into ~/.
@@ -28,6 +31,9 @@ sudo pacman -S py3status
 sudo pacman -S conky
 sudo pacman -S bat
 ```
+
+## rofi
+modified style from [adi1090x/rofi](https://github.com/adi1090x/rofi)
 
 ## terminal
 ```
