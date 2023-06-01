@@ -36,8 +36,11 @@ sudo pacman -S bat
 modified style from [adi1090x/rofi](https://github.com/adi1090x/rofi)
 
 ## terminal
+gnome-terminal has the run a custom command instead of my shell field in the profile editor
 ```
 sudo pacman -S zsh zsh-completions
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cat .zshrc >> ~/.zshrc
 ```
 
 # Vim
@@ -69,6 +72,10 @@ sudo pacman -S archlinux-keyring && sudo pacman -Syu
 - change lua_load = 'settings.lua' in start_conky_General_VERTICAL_circle to use local one
 - cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/settings.lua ~/.config/conky/
 - cp Conky-themes/Conky-Revisited-2/Conky_Revisited_2/Conky_Circle_Vertical/start_conky_General_VERTICAL_circle ~/.config/conky/
+
+## Pinebook Pro
+- Touchpad tab-to-click into i3 config
+-  exec xinput set-prop "Pine64 Pinebook Pro Touchpad" "Synaptics Tap Action" 1, 1, 1, 1, 1, 1, 1
 
 ## TODO
 - setup .git stuff
