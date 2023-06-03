@@ -163,3 +163,6 @@ exec --no-startup-id i3-msg 'workspace 2; exec ktimetracker'
 # keyboard
 bindsym $super+z exec setxkbmap -layout de;
 bindsym $super+x exec setxkbmap -layout us;
+
+# pinebook
+# exec xinput set-prop "Pine64 Pinebook Pro Touchpad" "Synaptics Tap Action" 1, 1, 1, 1, 1, 1, 1

@@ -9,7 +9,7 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,ssh,filebrowser,calc";
+	modi:                       "drun,ssh,filebrowser,calc,search:~/.config/rofi-web-search/rofi-web-search.py";
     show-icons:                 true;
     display-drun:               " Applications";
 	drun-display-format:        "{name}";

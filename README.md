@@ -10,6 +10,9 @@ cp -r .config/dunst ~/.config/
 cp -r .config/rofi ~/.config/
 mkdir -p ~/.local/share/fonts/
 cp .config/rofi/fonts/* ~/.local/share/fonts/
+git submodule init --update
+cp -r .config/rofi-web-search ~/.config
+cp rofi-web-search/rofi-web-search.py ~/.config/rofi-web-search
 # config compton, ranger, conky
 cp .config/compton.conf ~/.config/compton.conf
 cp -r .config/ranger ~/.config/

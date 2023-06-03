@@ -16,3 +16,6 @@
 [submodule "Conky-themes"]
 	path = Conky-themes
 	url = https://github.com/xexpanderx/Conky-themes
+[submodule "rofi-web-search"]
+	path = rofi-web-search
+	url = https://github.com/pdonadeo/rofi-web-search.git
