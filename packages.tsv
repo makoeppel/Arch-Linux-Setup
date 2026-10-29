@@ -1,0 +1,105 @@
+# Package manifest for install.sh
+#
+# One logical package per line, whitespace-separated columns:
+#   group   arch-name   fedora-name
+#
+# "-"            : not needed / not available on that distro
+# "aur:<name>"   : Arch User Repository (installed only if yay/paru/trizen exists)
+# "flatpak:<id>" : installed from Flathub (Fedora; only if flatpak is present)
+#
+# Groups: core desktop fonts shell apps dev dm
+#   core, desktop, fonts, shell are installed by default;
+#   apps, dev, dm are opt-in (see ./install.sh --help).
+#
+# group    arch                      fedora
+# --- X11 + i3 -----------------------------------------------------------------
+core       xorg-server               xorg-x11-server-Xorg
+core       xorg-xinit                xorg-x11-xinit
+core       -                         xorg-x11-drivers
+core       xorg-xauth                xorg-x11-xauth
+core       xorg-xrdb                 xrdb
+core       xorg-xset                 xset
+core       xorg-setxkbmap            setxkbmap
+core       xorg-xinput               xinput
+core       i3-wm                     i3
+core       i3status                  i3status
+core       i3lock                    i3lock
+core       py3status                 py3status
+core       dmenu                     dmenu
+core       xss-lock                  xss-lock
+core       dex                       dex-autostart
+# --- desktop helpers used by the configs in this repo -------------------------
+desktop    picom                     picom
+desktop    dunst                     dunst
+desktop    libnotify                 libnotify
+desktop    rofi                      rofi
+desktop    rofi-calc                 -
+desktop    hsetroot                  hsetroot
+desktop    feh                       feh
+desktop    xsettingsd                xsettingsd
+desktop    lxappearance              lxappearance
+desktop    scrot                     scrot
+desktop    viewnior                  viewnior
+desktop    xclip                     xclip
+desktop    xsel                      xsel
+desktop    conky                     conky
+desktop    gnome-terminal            gnome-terminal
+desktop    rxvt-unicode              rxvt-unicode
+desktop    thunar                    Thunar
+desktop    network-manager-applet    network-manager-applet
+desktop    pavucontrol               pavucontrol
+desktop    libpulse                  pulseaudio-utils
+desktop    alsa-utils                alsa-utils
+desktop    mpc                       mpc
+desktop    playerctl                 playerctl
+desktop    brightnessctl             brightnessctl
+desktop    xdg-user-dirs             xdg-user-dirs
+desktop    arandr                    arandr
+desktop    polkit-gnome              lxpolkit
+# --- fonts ----------------------------------------------------------------------
+fonts      noto-fonts                google-noto-sans-fonts
+fonts      noto-fonts-emoji          google-noto-emoji-fonts
+fonts      ttf-font-awesome          fontawesome-6-free-fonts
+fonts      adobe-source-code-pro-fonts adobe-source-code-pro-fonts
+fonts      powerline-fonts           powerline-fonts
+fonts      aur:ttf-mplus             mplus-1p-fonts
+fonts      fontconfig                fontconfig
+# --- shell / CLI ------------------------------------------------------------------
+shell      git                       git
+shell      make                      make
+shell      curl                      curl
+shell      jq                        jq
+shell      zsh                       zsh
+shell      zsh-completions           -
+shell      zsh-autosuggestions       zsh-autosuggestions
+shell      zsh-syntax-highlighting   zsh-syntax-highlighting
+shell      tmux                      tmux
+shell      vim                       vim-enhanced
+shell      bat                       bat
+shell      ranger                    ranger
+shell      w3m                       w3m
+shell      highlight                 highlight
+shell      poppler                   poppler-utils
+shell      fzf                       fzf
+shell      ripgrep                   ripgrep
+shell      htop                      htop
+shell      -                         glibc-langpack-de
+# --- GUI applications started by ~/.config/i3/autostart.sh (opt-in) --------------
+apps       firefox                   firefox
+apps       thunderbird               thunderbird
+apps       keepassxc                 keepassxc
+apps       qbittorrent               qbittorrent
+apps       geany                     geany
+apps       signal-desktop            flatpak:org.signal.Signal
+apps       discord                   flatpak:com.discordapp.Discord
+apps       aur:mattermost-desktop    flatpak:com.mattermost.Desktop
+apps       ktimetracker              -
+apps       -                         flatpak
+# --- build tools (ROOT / Geant4 in compiled_software/, restic backups) (opt-in) ----
+dev        base-devel                gcc-c++
+dev        cmake                     cmake
+dev        restic                    restic
+dev        sqlcipher                 sqlcipher
+# --- display manager (opt-in: --dm) -------------------------------------------------
+dm         lightdm                   lightdm
+dm         lightdm-gtk-greeter       lightdm-gtk

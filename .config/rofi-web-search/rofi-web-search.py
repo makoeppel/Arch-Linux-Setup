@@ -1,0 +1,1 @@
+../../rofi-web-search/rofi-web-search.py
