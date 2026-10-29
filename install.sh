@@ -44,6 +44,8 @@ DO_OHMYZSH=0
 DO_VIM=0
 DO_CHSH=0
 DO_XINITRC=0
+ROFI_CALC=auto            # auto: build on Fedora when the desktop group is installed
+ROFI_CALC_VERSION=v2.5.1
 DM=""
 GROUPS_DEFAULT="core,desktop,fonts,shell"
 GROUPS_SEL=""
@@ -98,6 +100,9 @@ Steps (default: --packages --dotfiles):
   --vim                install the amix/vimrc runtime (.vim_runtime submodule)
   --chsh               make zsh the login shell
   --xinitrc            write ~/.xinitrc ("exec i3") for starting i3 with startx
+  --rofi-calc          (re)install the rofi calculator mode (Fedora: build from source,
+                       it is not packaged; done automatically with the desktop group)
+  --no-rofi-calc       do not build rofi-calc on Fedora
   --dm lightdm         install + enable LightDM (replaces the current display manager)
 
 Package selection:
@@ -126,6 +131,8 @@ while (( $# )); do
         --vim)        DO_VIM=1 ;;
         --chsh)       DO_CHSH=1 ;;
         --xinitrc)    DO_XINITRC=1 ;;
+        --rofi-calc)  ROFI_CALC=yes ;;
+        --no-rofi-calc) ROFI_CALC=no ;;
         --dm)         DM=${2:?--dm needs an argument}; shift ;;
         -g|--groups)  GROUPS_SEL=${2:?--groups needs an argument}; shift ;;
         --add-groups) GROUPS_SEL="$GROUPS_DEFAULT,${2:?--add-groups needs an argument}"; shift ;;
@@ -272,6 +279,48 @@ install_packages() {
     (( ${#missing[@]} == 0 )) || warn "not found in the repositories, skipped: ${missing[*]}"
 }
 
+# rofi's calculator mode ("calc" in the launcher). Arch packages it; on Fedora it
+# is built from source into ~/.local/lib/rofi, which ~/.config/rofi/launcher.sh
+# adds to ROFI_PLUGIN_PATH (no files outside $HOME, no root needed for the plugin).
+install_rofi_calc() {
+    case "$ROFI_CALC" in
+        no)   return 0 ;;
+        auto) [ "$DISTRO" = fedora ] && (( DO_PACKAGES )) \
+                  && [[ ",$GROUPS_SEL," == *,desktop,* ]] || return 0 ;;
+    esac
+    if [ "$DISTRO" = arch ]; then
+        step "rofi-calc"
+        local -a confirm=(); if (( ASSUME_YES )); then confirm=(--noconfirm); fi
+        run sudo pacman -S --needed "${confirm[@]}" rofi-calc libqalculate
+        return 0
+    fi
+
+    local dest="$HOME/.local/lib/rofi/calc.so"
+    step "rofi-calc $ROFI_CALC_VERSION (built from source into ${dest/#$HOME/\~})"
+    if [ -f "$dest" ] && [ "$ROFI_CALC" = auto ]; then
+        info "already installed (rebuild with --rofi-calc)"
+        return 0
+    fi
+    local -a dnf_yes=(); if (( ASSUME_YES )); then dnf_yes=(-y); fi
+    # shellcheck disable=SC2218  # false positive (shellcheck 0.11): run is defined above
+    run sudo dnf install "${dnf_yes[@]}" gcc meson ninja-build pkgconf-pkg-config \
+        rofi-devel glib2-devel cairo-devel qalculate git
+    local tmp; tmp=$(mktemp -d)
+    run git clone --quiet --depth 1 --branch "$ROFI_CALC_VERSION" \
+        https://github.com/svenstaro/rofi-calc.git "$tmp/rofi-calc"
+    run meson setup "$tmp/build" "$tmp/rofi-calc"
+    run meson compile -C "$tmp/build"
+    if (( DRY_RUN )); then
+        info "[dry-run] would install the built plugin as $dest"
+    else
+        local so; so=$(find "$tmp/build/src" -maxdepth 1 -name '*calc*.so' -print -quit)
+        [ -n "$so" ] || die "rofi-calc build produced no plugin (.so) in $tmp/build/src"
+        install -Dm755 "$so" "$dest"
+        info "installed $dest"
+    fi
+    rm -rf -- "$tmp"
+}
+
 setup_dm() {
     if [ -z "$DM" ]; then return 0; fi
     step "Display manager: $DM"
@@ -389,6 +438,7 @@ dry_note=""; if (( DRY_RUN )); then dry_note="(dry run)"; fi
 step "Distribution: $DISTRO   dotfiles: $DOTFILES   $dry_note"
 
 if (( DO_PACKAGES )); then install_packages; fi
+install_rofi_calc
 setup_dm
 if (( DO_DOTFILES )); then link_dotfiles;    fi
 if (( DO_OHMYZSH ));  then install_ohmyzsh;  fi

@@ -9,7 +9,8 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,ssh,filebrowser,calc,search:~/.config/rofi-web-search/rofi-web-search.py";
+	/* only built-in modes here; launcher.sh adds calc and web search when available */
+	modi:                       "drun,ssh,filebrowser";
     show-icons:                 true;
     display-drun:               " Applications";
 	drun-display-format:        "{name}";

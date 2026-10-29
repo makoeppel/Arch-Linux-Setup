@@ -8,6 +8,7 @@
 # "flatpak:<id>" : installed from Flathub (Fedora; only if flatpak is present)
 #
 # Groups: core desktop fonts shell apps dev dm
+#   (rofi-calc is not packaged for Fedora; install.sh builds it, see --rofi-calc)
 #   core, desktop, fonts, shell are installed by default;
 #   apps, dev, dm are opt-in (see ./install.sh --help).
 #
@@ -34,6 +35,7 @@ desktop    dunst                     dunst
 desktop    libnotify                 libnotify
 desktop    rofi                      rofi
 desktop    rofi-calc                 -
+desktop    libqalculate              qalculate
 desktop    hsetroot                  hsetroot
 desktop    feh                       feh
 desktop    xsettingsd                xsettingsd

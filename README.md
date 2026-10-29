@@ -36,6 +36,7 @@ Then log out and select the **i3** session at the login screen.
 | `--chsh` | make zsh the login shell |
 | `--dm lightdm` | install and enable LightDM (replaces GDM/SDDM) |
 | `--xinitrc` | write `~/.xinitrc` so i3 can be started with `startx` |
+| `--rofi-calc` | (re)build the rofi calculator plugin (Fedora) / install it (Arch) |
 | `-y` | non-interactive; existing files are moved to `~/.dotfiles-backup/<date>/` |
 
 Existing files are never deleted silently: for each one you choose backup
@@ -54,6 +55,11 @@ of aborting the run.
   changed whether it can start X11 sessions. If **i3** does not appear in the
   session menu, run `./install.sh --dm lightdm` (LightDM is what the Fedora i3 Spin
   uses), or `./install.sh --xinitrc` and start i3 with `startx` from a text console.
+* The rofi calculator mode (`rofi-calc`) is not packaged for Fedora. `install.sh`
+  builds it from source into `~/.local/lib/rofi/` (rerun with `--rofi-calc` to
+  rebuild, `--no-rofi-calc` to skip). The launcher only offers the `calc` and web
+  search modes when they are available, so a missing plugin no longer stops rofi
+  with "Mode calc is not found".
 * Signal, Discord and Mattermost are not in the Fedora repositories and are
   installed from Flathub when you use `--add-groups apps`.
 * `.bashrc` sets `LC_ALL=de_DE.UTF-8`; on Fedora this needs `glibc-langpack-de`
