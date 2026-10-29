@@ -11,6 +11,17 @@ cd ~/.dotfiles
 ./install.sh                    # packages (core,desktop,fonts,shell) + dotfiles
 ```
 
+`install.sh` can also do the clone itself. Run outside a clone, it installs git if
+needed, clones the repository with its submodules to `~/.dotfiles` (or updates an
+existing clone there), and continues with the `install.sh` from that clone. All
+options are passed on:
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/makoeppel/Arch-Linux-Setup/main/install.sh) --dry-run
+```
+
+Use `--dir PATH` and `--repo URL` to clone somewhere else or from a fork.
+
 Then log out and select the **i3** session at the login screen.
 
 ### Options

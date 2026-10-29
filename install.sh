@@ -1,15 +1,39 @@
 #!/usr/bin/env bash
 #
-# Bootstrap an i3 desktop and link the dotfiles of this repository.
-# Supported: Arch Linux (and derivatives) and Fedora (and derivatives).
+# Linux dotfiles: i3 on Arch Linux and Fedora (and their derivatives).
 #
-#   ./install.sh                 packages (core,desktop,fonts,shell) + dotfiles
-#   ./install.sh --help          all options
+# Quick start -- either clone yourself:
+#
+#   git clone --recursive https://github.com/makoeppel/Arch-Linux-Setup.git ~/.dotfiles
+#   cd ~/.dotfiles
+#   ./install.sh --dry-run          # show what would happen
+#   ./install.sh                    # packages (core,desktop,fonts,shell) + dotfiles
+#
+# or let this script do the clone (it installs git if needed, clones the repo
+# with its submodules to ~/.dotfiles, or updates an existing clone there, and then
+# continues with the install.sh from that clone, passing on all options):
+#
+#   bash <(curl -fsSL https://raw.githubusercontent.com/makoeppel/Arch-Linux-Setup/main/install.sh)
+#
+# Then log out and select the "i3" session at the login screen.
+# All options: ./install.sh --help
 #
 set -Eeuo pipefail
 
-DOTFILES=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+ORIG_ARGS=("$@")
+REPO_URL=${REPO_URL:-https://github.com/makoeppel/Arch-Linux-Setup.git}
+REPO_DIR=${REPO_DIR:-$HOME/.dotfiles}
+
+# directory of this script, or "" when it is not a regular file
+# (piped into bash, or run via process substitution)
+_self=${BASH_SOURCE[0]:-}
+if [ -n "$_self" ] && [ -f "$_self" ]; then
+    DOTFILES=$(dirname -- "$(readlink -f -- "$_self")")
+else
+    DOTFILES=""
+fi
 readonly DOTFILES
+unset _self
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 OS_RELEASE=${OS_RELEASE:-/etc/os-release}
 
@@ -81,6 +105,10 @@ Package selection:
                        (default: $GROUPS_DEFAULT; others: apps, dev, dm)
   --add-groups LIST    install the default groups plus LIST (e.g. --add-groups apps,dev)
 
+Repository (used when install.sh is run outside a clone of the repo):
+  --repo URL           git URL to clone (default: $REPO_URL)
+  --dir PATH           where to clone it (default: $REPO_DIR)
+
 General:
   --distro arch|fedora override auto-detection from $OS_RELEASE
   -y, --yes            non-interactive; existing files are moved to a backup dir
@@ -102,6 +130,8 @@ while (( $# )); do
         -g|--groups)  GROUPS_SEL=${2:?--groups needs an argument}; shift ;;
         --add-groups) GROUPS_SEL="$GROUPS_DEFAULT,${2:?--add-groups needs an argument}"; shift ;;
         --distro)     DISTRO=${2:?--distro needs an argument}; shift ;;
+        --repo)       REPO_URL=${2:?--repo needs an argument}; shift ;;
+        --dir)        REPO_DIR=${2:?--dir needs an argument}; shift ;;
         -y|--yes)     ASSUME_YES=1 ;;
         -n|--dry-run) DRY_RUN=1 ;;
         -h|--help)    usage; exit 0 ;;
@@ -127,6 +157,45 @@ detect_distro() {
         *" fedora "*|*" rhel "*|*" centos "*)    DISTRO=fedora ;;
         *) die "unsupported distribution '$ID' (ID_LIKE='$ID_LIKE'); use --distro" ;;
     esac
+}
+
+# --------------------------------------------------------------- bootstrap ----
+in_repo() {
+    [ -n "$DOTFILES" ] && [ -f "$DOTFILES/packages.tsv" ] && [ -d "$DOTFILES/.config/i3" ]
+}
+
+# clone (or update) the repository, then hand over to its install.sh
+bootstrap_repo() {
+    step "Getting the dotfiles repository: $REPO_URL -> $REPO_DIR"
+    if ! command -v git >/dev/null; then
+        info "installing git"
+        case "$DISTRO" in
+            arch)   run sudo pacman -Syu --needed --noconfirm git ;;
+            fedora) run sudo dnf install -y git ;;
+        esac
+    fi
+    if [ -d "$REPO_DIR/.git" ]; then
+        run git -C "$REPO_DIR" pull --ff-only
+        run git -C "$REPO_DIR" submodule update --init --recursive
+    elif [ -e "$REPO_DIR" ]; then
+        die "$REPO_DIR exists but is not a git clone; choose another path with --dir"
+    else
+        run git clone --recursive "$REPO_URL" "$REPO_DIR"
+    fi
+
+    if (( DRY_RUN )) && [ ! -f "$REPO_DIR/packages.tsv" ]; then
+        info "[dry-run] would continue with: $REPO_DIR/install.sh ${ORIG_ARGS[*]}"
+        exit 0
+    fi
+    [ -f "$REPO_DIR/packages.tsv" ] \
+        || die "$REPO_DIR has no packages.tsv: this clone holds an older version of the setup"
+
+    info "continuing with $REPO_DIR/install.sh"
+    # use the terminal as stdin (when piped into bash, stdin is the script itself)
+    if { : </dev/tty; } 2>/dev/null; then
+        exec bash "$REPO_DIR/install.sh" "${ORIG_ARGS[@]}" </dev/tty
+    fi
+    exec bash "$REPO_DIR/install.sh" "${ORIG_ARGS[@]}"
 }
 
 # ---------------------------------------------------------------- packages ----
@@ -315,6 +384,7 @@ write_xinitrc() {
 
 # -------------------------------------------------------------------- main ----
 detect_distro
+if ! in_repo; then bootstrap_repo; fi
 dry_note=""; if (( DRY_RUN )); then dry_note="(dry run)"; fi
 step "Distribution: $DISTRO   dotfiles: $DOTFILES   $dry_note"
 
